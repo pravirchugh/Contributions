@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Commit Summarizer</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>GitHub Commit Summarizer</h1>
+    <form id="commitForm">
+        <label for="repo_owner">Repository Owner:</label>
+        <input type="text" id="repo_owner" name="repo_owner" value="pravirchugh" required>
+
+        <label for="repo_name">Repository Name:</label>
+        <input type="text" id="repo_name" name="repo_name" value="UpVoice" required>
+
+        <label for="username">GitHub Username:</label>
+        <input type="text" id="username" name="username" value="pravirchugh" required>
+
+        <button type="button" onclick="submitForm()">Summarize Commits</button>
+    </form>
+
+    <div id="loading" style="display: none;">Summary generation in progress...</div>
+
+    <div id="summary" style="display: none;"></div>
+
+    <script>
+        async function submitForm() {
+            // Show loading message
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('summary').style.display = 'none';
+            document.getElementById('summary').textContent = '';
+
+            const repo_owner = document.getElementById('repo_owner').value;
+            const repo_name = document.getElementById('repo_name').value;
+            const username = document.getElementById('username').value;
+
+            const response = await fetch('/summarize_commits', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ repo_owner, repo_name, username })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                // Hide loading message and show summary
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('summary').style.display = 'block';
+                document.getElementById('summary').textContent = data.final_summary;
+            } else {
+                // Hide loading message and show error
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('summary').style.display = 'block';
+                document.getElementById('summary').textContent = 'Error: ' + data.detail;
+            }
+        }
+    </script>
+</body>
+</html>
