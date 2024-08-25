@@ -18,7 +18,7 @@ The **GitHub Commit Summarizer** is a web application that generates concise sum
 3. **Add GitHub and OpenAI API Credentials**:
     You will need an OpenAI API Key and a GitHub Personal Access Token to use this repository.
     Create a .env file in the project directory and add the following credentials:
-    ```bash
+    ```html
     OPENAI_API_KEY=<Your OpenAI API Key>
     GITHUB_PAT=<Your GitHub Personal Access Token>
     ```
