@@ -2,7 +2,7 @@
 
 ## What the App Does
 
-The **GitHub Commit Summarizer** is a web application that generates concise summaries of a user's GitHub commit history. By entering the repository owner, repository name, and GitHub username, the app provides an LLM-generated summary of the user's contributions, which can be useful for resumes or project documentation.
+The **Contribution Summarizer** is a web application that generates concise summaries of a user's GitHub commit history to a specific repository. By entering the repository owner, repository name, and GitHub username, the app provides an LLM-generated summary of the user's contributions, which can be useful for resumes or project documentation.
 
 ## How to Start the App
 
